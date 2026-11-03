@@ -10,7 +10,7 @@ model=pickle.load(open('model.pkl','rb'))
 scaler=pickle.load(open('scaler.pkl','rb'))
 feature_columns=pickle.load(open('feature_columns.pkl','rb'))
 
-st.title('Social network ads')
+st.title('Social network ads Prediction')
 st.subheader("Purchase prediction")
 st.write(
     'Enter Customer details to predict'
@@ -53,6 +53,7 @@ if st.button("Predict Purchase", type="primary"):
     # Scale input data
     input_scaled = scaler.transform(input_data)
     prediction = model.predict(input_scaled)[0]
+    probability = model.predict_proba(input_scaled)[0][1]
     st.divider()
     st.subheader("Prediction Result")
 
@@ -60,3 +61,4 @@ if st.button("Predict Purchase", type="primary"):
         st.success("The customer is likely to purchase the product!")
     else:
         st.info("The customer is unlikely to purchase the product.")
+    st.write("Purchase Probability: {:.2f}%".format(probability * 100))
