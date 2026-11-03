@@ -61,4 +61,4 @@ if st.button("Predict Purchase", type="primary"):
         st.success("The customer is likely to purchase the product!")
     else:
         st.info("The customer is unlikely to purchase the product.")
-    st.write("Purchase Probability: {:.2f}%".format(probability * 100))
+    
